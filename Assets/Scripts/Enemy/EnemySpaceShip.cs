@@ -14,6 +14,9 @@ public class EnemySpawner : MonoBehaviour
     private float currentAngle1 = 0f;
     private float angleIncrement_patter3 = 10f;
 
+    /// <summary>
+    /// This method is called once per frame
+    /// </summary>
     void Update()
     {
         patternTimer += Time.deltaTime;
@@ -27,17 +30,20 @@ public class EnemySpawner : MonoBehaviour
         switch (currentPattern)
         {
             case 0:
-                Pattern1(5, 5, 0.7f);
+                Pattern1(5, 4, 0.8f);
                 break;
             case 1:
                 Pattern2(4, 3, 4, 0.7f);
                 break;
             case 2:
-                Pattern3(20, 4, 1);
+                Pattern3(17, 3, 1.2f);
                 break;
         }
     }
 
+    /// <summary>
+    /// This method is responsible for the first pattern of the game
+    /// </summary>
     void Pattern1(int streams, int speed, float shotInterval)
     {
         if (Time.time - lastShotTime >= shotInterval)
@@ -74,6 +80,9 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This method is responsible for the second pattern of the game
+    /// </summary>
     void Pattern2(int streams, int batches, float speed, float shotInterval)
     {
         if (Time.time - lastShotTime >= shotInterval)
@@ -84,7 +93,6 @@ public class EnemySpawner : MonoBehaviour
             {
                 for (int j = 0; j < batches; j++)
                 {
-                    // Calculate the angle for each bullet in a stream
                     float angle = currentAngle1 + i * (360f / streams) + j * angleIncrement_patter3;
 
                     GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
@@ -97,11 +105,13 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
 
-            // Increment the base angle for the next shot
             currentAngle1 += angleIncrement_patter3;
         }
     }
 
+    /// <summary>
+    /// This method is responsible for the third pattern of the game
+    /// </summary>
     void Pattern3(int streams, int speed, float shotInterval)
     {
         if (Time.time - lastShotTime >= shotInterval)
@@ -124,6 +134,9 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This method is responsible for the destruction of the bullet after a certain time span
+    /// </summary>
     void DestroyBullet(GameObject bullet)
     {
         Destroy(bullet, timeSpan);

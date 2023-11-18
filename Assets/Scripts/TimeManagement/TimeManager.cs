@@ -15,7 +15,9 @@ public class TimeManager : MonoBehaviour
     private float minuteToRealTime = 1f;
     private float timer;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// This player controller class will update the events from the vehicle player.
+    /// </summary>
     void Start()
     {
         Minute = 0;
@@ -23,7 +25,9 @@ public class TimeManager : MonoBehaviour
         timer = minuteToRealTime;
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// This method is called once per frame
+    /// </summary>
     void Update()
     {
         timer -= Time.deltaTime;

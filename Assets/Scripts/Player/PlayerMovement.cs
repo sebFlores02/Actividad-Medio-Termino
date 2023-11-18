@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public float turnSpeed = 120.0f;
     public float horizontalInput;
     public float forwardInput;
-    private float reducedSpeed = 0.5f;
+    private float reducedSpeed = 0.4f;
     public KeyCode speedKey;
 
     // Create bullets
@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
 
         transform.Rotate(Vector3.up, Time.deltaTime * turnSpeed * horizontalInput);
 
+        // Reduce Player Speed
         if (Input.GetKey(KeyCode.Space))
         {
             SpawnBullet(leftBlaster, bulletSpeed);
@@ -62,6 +63,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Spawns a bullet from a specific blaster position with a given speed.
+    /// </summary>
     void SpawnBullet(Transform blasterTransform, int bulletSpeed)
     {
 
